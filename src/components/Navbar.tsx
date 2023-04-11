@@ -1,3 +1,4 @@
+import {Link} from "react-router-dom"
 import {
     Box,
     Flex,
@@ -7,7 +8,7 @@ import {
     Stack,
     Collapse,
     Icon,
-    Link,
+
     Popover,
     PopoverTrigger,
     PopoverContent,
@@ -52,8 +53,8 @@ import {
               aria-label={'Toggle Navigation'}
             />
           </Flex>
-          <Flex flex={{ base: 1 }} justify={{ base: 'center', md: 'start' }}>
-            <Image marginRight={"10px"} boxSize="40px" src={icon} alt="AstrPredict"/>{' '}
+          <Flex fontWeight="bold" fontSize="20px" flex={{ base: 1 }} justify={{ base: 'center', md: 'start' }}>
+            <Image marginRight={"10px"} boxSize="30px" src={icon} alt="AstraPredict"/>{' '}
             <Text
               textAlign={useBreakpointValue({ base: 'center', md: 'end' })}
               fontFamily={'heading'}
@@ -108,8 +109,6 @@ import {
   }
   
   const DesktopNav = () => {
-    const linkColor = useColorModeValue('orange.600', 'orange.200');
-    const linkHoverColor = useColorModeValue('orange.800', 'white');
     const popoverContentBgColor = useColorModeValue('white', 'orange.800');
   
     return (
@@ -118,18 +117,23 @@ import {
           <Box key={navItem.label}>
             <Popover trigger={'hover'} placement={'bottom-start'}>
               <PopoverTrigger>
+              <Button
+              as={'a'}
+              color="white"
+              fontSize={'sm'}
+              fontWeight={400}
+              variant={'link'}
+              href={'#'}
+              _hover={{
+                color: 'orange.300',
+              }}
+              >
                 <Link
-                  p={2}
-                  href={navItem.href ?? '#'}
-                  fontSize={'sm'}
-                  fontWeight={500}
-                  color={linkColor}
-                  _hover={{
-                    textDecoration: 'none',
-                    color: linkHoverColor,
-                  }}>
+                    to={navItem.link}>
                   {navItem.label}
                 </Link>
+            </Button>
+
               </PopoverTrigger>
   
               {navItem.children && (
@@ -154,15 +158,10 @@ import {
     );
   };
   
-  const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
+  const DesktopSubNav = ({ label, link }: NavItem) => {
     return (
       <Link
-        href={href}
-        role={'group'}
-        display={'block'}
-        p={2}
-        rounded={'md'}
-        _hover={{ bg: useColorModeValue('orange.50', 'orange.900') }}>
+        to={link}>
         <Stack direction={'row'} align={'center'}>
           <Box>
             <Text
@@ -171,7 +170,7 @@ import {
               fontWeight={500}>
               {label}
             </Text>
-            <Text fontSize={'sm'}>{subLabel}</Text>
+            {/* <Text fontSize={'sm'}>{subLabel}</Text> */}
           </Box>
           <Flex
             transition={'all .3s ease'}
@@ -201,7 +200,7 @@ import {
     );
   };
   
-  const MobileNavItem = ({ label, children, href }: NavItem) => {
+  const MobileNavItem = ({ label, children, link }: NavItem) => {
     const { isOpen, onToggle } = useDisclosure();
   
     return (
@@ -209,7 +208,7 @@ import {
         <Flex
           py={2}
           as={Link}
-          href={href ?? '#'}
+       
           justify={'space-between'}
           align={'center'}
           _hover={{
@@ -239,12 +238,6 @@ import {
             borderStyle={'solid'}
             borderColor={useColorModeValue('orange.200', 'orange.700')}
             align={'start'}>
-            {children &&
-              children.map((child) => (
-                <Link key={child.label} py={2} href={child.href}>
-                  {child.label}
-                </Link>
-              ))}
           </Stack>
         </Collapse>
       </Stack>
@@ -253,25 +246,20 @@ import {
   
   interface NavItem {
     label: string;
-    subLabel?: string;
     children?: Array<NavItem>;
-    href?: string;
+    link?: any
   }
   
   const NAV_ITEMS: Array<NavItem> = [
     {
-      label: 'About',
-      children: [
-        {
-          label: 'Prediction Models',
-          subLabel: 'How we make predictions',
-          href: '#',
-        },
-        {
-          label: 'Our Mission',
-          subLabel: 'How we are different',
-          href: '#',
-        },
-      ],
-    },
+        label: 'Home',
+        link: "./"
+    
+      },
+
+    {
+        label: 'Prediction',
+        link: "./prediction"
+      },
+    
   ];

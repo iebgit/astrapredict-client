@@ -16,9 +16,7 @@ import { IData } from "../App"
 
 const regexPattern = /[^A-Za-z]/g;
 
-
-
-const Prediction:FC<IData> = ({data}) => {
+const PredictionPage:FC<IData> = ({data}) => {
     const [images, setImages] = useState(
         importAll(require.context("../assets", false, /\.(png|jpe?g|svg)$/))
       );
@@ -44,10 +42,9 @@ const Prediction:FC<IData> = ({data}) => {
       }
     return (
 <SimpleGrid minChildWidth="400px" columns={2} spacing={4}>
-<Box >
-  {!!data?.price_change && (
-    <center>
-      <h3>
+<Box>
+  <center style={{ fontWeight: "bold" }}>
+  <h3>
         <strong style={{ color: "#FCB13B" }}>
           {data.location.city}, {data.location.region}
         </strong>
@@ -80,7 +77,9 @@ const Prediction:FC<IData> = ({data}) => {
         {data.planets[0].planet.toUpperCase()}:{" "}
         {data.planets[0].longitude}
       </p>
-      <br />
+</center>
+    </Box>
+    <Box>  <center style={{ fontSize: "small", fontWeight: "bold" }}>
       <TableContainer
         style={{ fontSize: "small", fontWeight: "bold" }}
       >
@@ -121,44 +120,10 @@ const Prediction:FC<IData> = ({data}) => {
         </Table>
       </TableContainer>
     </center>
-  )}
-</Box>
-<Box>
-  <center style={{ fontSize: "small", fontWeight: "bold" }}>
-    <TableContainer>
-      <Table>
-        <TableCaption style={{ color: "white" }}>
-          Planet Positions
-        </TableCaption>
-        <Thead>
-          <Tr>
-            <Th style={{ color: "white" }}>Planets</Th>
-            <Th style={{ color: "white" }}>Positions</Th>
-          </Tr>
-        </Thead>
-        <Tbody>
-          {data.planets.slice(1).map((planet, i) => {
-            return (
-              <Tr key={i}>
-                <Td>{planet.planet}</Td>
-                <Td>
-                  {" "}
-                  <span
-                    style={{ color: "#FCB13B", fontWeight: "bold" }}
-                  >
-                    {planet.longitude}
-                  </span>
-                </Td>
-              </Tr>
-            );
-          })}
-        </Tbody>
-      </Table>
-    </TableContainer>
-  </center>
+  
 </Box>
 </SimpleGrid>)
 
 }
 
-export default Prediction;
+export default PredictionPage;

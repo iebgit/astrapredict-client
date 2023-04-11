@@ -1,8 +1,11 @@
 import "./App.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import Prediction from "./components/Prediction";
+import PredictionPage from "./pages/PredictionPage";
+import SiderealPage from "./pages/SiderealPage";
 import Navbar from "./components/Navbar"
+import Loader from "./pages/Loader"
+import { Routes, Route } from "react-router-dom";
 
 export interface IData {
   data: {
@@ -33,16 +36,16 @@ function App() {
     <div className="App-header">
       <Navbar/>
       <br/>
+
       {data?.price_change ? (
-        <Prediction data={data}/>
-      ) : (
-        <div className="App-center">
-          <div className="loader">
-            <div className="outer"></div>
-            <div className="inner"></div>
-          </div>
-        </div>
-      )}
+        <Routes>
+          <Route path="/prediction" element={<PredictionPage data={data}/>} />
+          <Route path="/" element={<SiderealPage data={data}/>} />
+          <Route path="/loader" element={<Loader/>} />
+        </Routes>
+      ) : 
+      <Loader/>
+      }
     </div>
   );
 }
