@@ -55,6 +55,8 @@ function App() {
       ) : (
         <Loader />
       )}
+      <br />
+      <br />
       <Footer />
     </div>
   );

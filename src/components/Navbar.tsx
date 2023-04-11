@@ -230,7 +230,7 @@ const MobileNavItem = ({ label, children, link }: NavItem) => {
           fontWeight={600}
           color={useColorModeValue("orange.600", "orange.200")}
         >
-          {label}
+          <Link to={link}>{label}</Link>
         </Text>
         {children && (
           <Icon
