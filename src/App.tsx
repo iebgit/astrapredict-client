@@ -5,6 +5,7 @@ import Prediction from "./components/Prediction";
 import Sidereal from "./components/Sidereal";
 import Navbar from "./components/Navbar";
 import Loader from "./components/Loader";
+import Footer from "./components/Footer";
 import { Routes, Route } from "react-router-dom";
 
 export interface IData {
@@ -54,6 +55,7 @@ function App() {
       ) : (
         <Loader />
       )}
+      <Footer />
     </div>
   );
 }
