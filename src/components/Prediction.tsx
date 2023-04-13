@@ -15,6 +15,7 @@ import {
   Button,
   Progress,
   Stack,
+  Image,
 } from "@chakra-ui/react";
 
 import { IData } from "../App";
@@ -28,28 +29,59 @@ const Prediction: FC<IData> = ({ data }) => {
   const dispatch = useDispatch();
 
   return (
-    <SimpleGrid minChildWidth="400px" columns={2} spacing={4}>
+    <SimpleGrid minChildWidth="400px" margin="10px" columns={2} spacing={4}>
       <Ascendant data={data} />
       <Box>
         {" "}
         <center>
           <Stack direction="row" spacing={1} align="center">
             <Input
+              width={"66%"}
               placeholder={"Enter Coin Id"}
               onChange={(e) => setInput(e.target.value)}
+              size="sm"
             />
             <Button
-              colorScheme="orange"
-              onClick={() => dispatch(changeCoinId(input.toLowerCase()))}
+              colorScheme="yellow"
+              size="sm"
+              width={"25%"}
+              onClick={() => {
+                dispatch(changeCoinId(input.toLowerCase()));
+                setIsLoading(true);
+                setTimeout(() => setIsLoading(false), 3000);
+              }}
             >
               Submit
             </Button>
           </Stack>
-          <br />
+
+          <Stack
+            overflowX="auto"
+            direction="row"
+            spacing={1}
+            align="flex-start"
+            overflow="hidden"
+          >
+            {data.coins.map((coin) => (
+              <Image
+                onClick={() => {
+                  dispatch(changeCoinId(coin.id));
+                  setIsLoading(true);
+                  setTimeout(() => setIsLoading(false), 3000);
+                }}
+                title={coin.id.toString()}
+                width="60px"
+                padding="10px"
+                _hover={{ cursor: "pointer" }}
+                src={coin.image.toString()}
+              ></Image>
+            ))}
+          </Stack>
+
           {isLoading ? (
-            <Progress size="xs" isIndeterminate colorScheme="orange" />
+            <Progress size="xs" isIndeterminate colorScheme="yellow" />
           ) : (
-            <Progress size="xs" colorScheme="orange" />
+            <Progress size="xs" colorScheme="yellow" />
           )}
 
           <TableContainer style={{ fontSize: "large", fontWeight: "bold" }}>

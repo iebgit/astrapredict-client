@@ -9,6 +9,7 @@ import Footer from "./components/Footer";
 import { Routes, Route } from "react-router-dom";
 import { useSelector } from "react-redux";
 import type { RootState } from "./store";
+import AstraPredict from "./components/AstraPredict";
 
 export interface IData {
   data: {
@@ -23,7 +24,13 @@ export interface IData {
     price_change: any;
     predicted: any;
     coin_id: String;
+    coins: Array<ICoins>;
   };
+}
+
+interface ICoins {
+  id: String;
+  image: String;
 }
 
 function App() {
@@ -33,6 +40,7 @@ function App() {
     price_change: 0,
     predicted: "",
     coin_id: "",
+    coins: [],
   });
   const coinId = useSelector((state: RootState) => state.value);
 
@@ -57,6 +65,7 @@ function App() {
       {data?.price_change ? (
         <Routes>
           <Route path="/prediction" element={<Prediction data={data} />} />
+          <Route path="/info" element={<AstraPredict />} />
           <Route path="/" element={<Sidereal data={data} />} />
         </Routes>
       ) : (

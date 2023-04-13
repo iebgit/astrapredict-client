@@ -16,7 +16,7 @@ import { IData } from "../App";
 
 const Sidereal: FC<IData> = ({ data }) => {
   return (
-    <SimpleGrid minChildWidth="400px" columns={2} spacing={4}>
+    <SimpleGrid minChildWidth="400px" margin="10px" columns={2} spacing={4}>
       <Ascendant data={data} />
       <Box>
         <center style={{ fontSize: "small", fontWeight: "bold" }}>

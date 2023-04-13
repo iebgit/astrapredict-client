@@ -17,12 +17,12 @@ const Ascendant: FC<IData> = ({ data }) => {
     });
     return imgs;
   }
-
+  // get image for ascendant from current padam or house of the sun
   function getImage() {
     return images[
-      `${data.planets[0].longitude
-        .replace(regexPattern, "")
-        .toLowerCase()}${getRandomInt(4)}.png`
+      `${data.planets[0].longitude.replace(regexPattern, "").toLowerCase()}${
+        Number(data.planets[1].padam) - 1
+      }.png`
     ];
   }
 
