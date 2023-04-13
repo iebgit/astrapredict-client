@@ -7,6 +7,8 @@ import Navbar from "./components/Navbar";
 import Loader from "./components/Loader";
 import Footer from "./components/Footer";
 import { Routes, Route } from "react-router-dom";
+import { useSelector } from "react-redux";
+import type { RootState } from "./store";
 
 export interface IData {
   data: {
@@ -20,27 +22,32 @@ export interface IData {
     };
     price_change: any;
     predicted: any;
+    coin_id: String;
   };
 }
 
-const default_data = {
-  planets: [],
-  location: { city: "", ip: "", region: "", country: "", time: "" },
-  price_change: 0,
-  predicted: "",
-};
-
 function App() {
-  const [data, setData] = useState(default_data);
+  const [data, setData] = useState({
+    planets: [],
+    location: { city: "", ip: "", region: "", country: "", time: "" },
+    price_change: 0,
+    predicted: "",
+    coin_id: "",
+  });
+  const coinId = useSelector((state: RootState) => state.value);
 
   useEffect(() => {
-    const getPrediction = async () => {
-      const response: any = await axios.get(`http://localhost:5000/predict`);
-      console.log(response.data);
-      setData(response.data);
-    };
-    getPrediction();
-  }, []);
+    if (!!coinId?.value) {
+      const getPrediction = async () => {
+        const response: any = await axios.get(`http://localhost:5000/predict`, {
+          params: { coinId: coinId.value },
+        });
+        console.log(response.data);
+        setData(response.data);
+      };
+      getPrediction();
+    }
+  }, [coinId]);
 
   return (
     <div className="App-header">
