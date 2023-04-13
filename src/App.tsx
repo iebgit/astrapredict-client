@@ -47,9 +47,12 @@ function App() {
   useEffect(() => {
     if (!!coinId?.value) {
       const getPrediction = async () => {
-        const response: any = await axios.get(`http://localhost:5000/predict`, {
-          params: { coinId: coinId.value },
-        });
+        const response: any = await axios.get(
+          `https://astrapredict.herokuapp.com/predict`,
+          {
+            params: { coinId: coinId.value },
+          }
+        );
         console.log(response.data);
         setData(response.data);
       };
