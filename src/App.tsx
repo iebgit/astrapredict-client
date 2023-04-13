@@ -48,7 +48,7 @@ function App() {
     if (!!coinId?.value) {
       const getPrediction = async () => {
         const response: any = await axios.get(
-          `https://astrapredict.herokuapp.com/predict`,
+          `https://astrapredict.onrender.com/predict`,
           {
             params: { coinId: coinId.value },
           }

@@ -62,8 +62,9 @@ const Prediction: FC<IData> = ({ data }) => {
             align="flex-start"
             overflow="hidden"
           >
-            {data.coins.map((coin) => (
+            {data.coins.map((coin, i) => (
               <Image
+                key={i}
                 onClick={() => {
                   dispatch(changeCoinId(coin.id));
                   setIsLoading(true);
