@@ -22,15 +22,15 @@ import { IData } from "../App";
 import { useDispatch } from "react-redux";
 import { changeCoinId } from "../coinIdSlice";
 
-const Prediction: FC<IData> = ({ data }) => {
+const Prediction: FC<IData> = ({ data, loading }) => {
   const [id, setId] = useState("bitcoin");
   const [input, setInput] = useState("bitcoin");
-  const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
+  console.log(loading);
 
   return (
     <SimpleGrid minChildWidth="400px" margin="10px" columns={2} spacing={4}>
-      <Ascendant data={data} />
+      <Ascendant data={data} loading={loading} />
       <Box>
         {" "}
         <center>
@@ -47,8 +47,6 @@ const Prediction: FC<IData> = ({ data }) => {
               width={"25%"}
               onClick={() => {
                 dispatch(changeCoinId(input.toLowerCase()));
-                setIsLoading(true);
-                setTimeout(() => setIsLoading(false), 3000);
               }}
             >
               Submit
@@ -62,13 +60,11 @@ const Prediction: FC<IData> = ({ data }) => {
             align="flex-start"
             overflow="hidden"
           >
-            {data.coins.map((coin, i) => (
+            {data?.coins.map((coin, i) => (
               <Image
                 key={i}
                 onClick={() => {
                   dispatch(changeCoinId(coin.id));
-                  setIsLoading(true);
-                  setTimeout(() => setIsLoading(false), 3000);
                 }}
                 title={coin.id.toString()}
                 width="60px"
@@ -79,7 +75,7 @@ const Prediction: FC<IData> = ({ data }) => {
             ))}
           </Stack>
 
-          {isLoading ? (
+          {loading ? (
             <Progress size="xs" isIndeterminate colorScheme="yellow" />
           ) : (
             <Progress size="xs" colorScheme="yellow" />

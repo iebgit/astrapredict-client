@@ -26,6 +26,7 @@ export interface IData {
     coin_id: String;
     coins: Array<ICoins>;
   };
+  loading: boolean;
 }
 
 interface ICoins {
@@ -42,19 +43,19 @@ function App() {
     coin_id: "",
     coins: [],
   });
+  const [loading, setLoading] = useState(true);
   const coinId = useSelector((state: RootState) => state.value);
 
   useEffect(() => {
     if (!!coinId?.value) {
+      setLoading(true);
       const getPrediction = async () => {
-        const response: any = await axios.get(
-          `https://astrapredict.onrender.com/predict`,
-          {
-            params: { coinId: coinId.value },
-          }
-        );
+        const response: any = await axios.get(`http://localhost:5000/predict`, {
+          params: { coinId: coinId.value },
+        });
         console.log(response.data);
         setData(response.data);
+        setLoading(false);
       };
       getPrediction();
     }
@@ -67,9 +68,15 @@ function App() {
 
       {data?.price_change ? (
         <Routes>
-          <Route path="/prediction" element={<Prediction data={data} />} />
+          <Route
+            path="/prediction"
+            element={<Prediction data={data} loading={loading} />}
+          />
           <Route path="/info" element={<AstraPredict />} />
-          <Route path="/" element={<Sidereal data={data} />} />
+          <Route
+            path="/"
+            element={<Sidereal data={data} loading={loading} />}
+          />
         </Routes>
       ) : (
         <Loader />

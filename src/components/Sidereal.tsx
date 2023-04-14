@@ -14,10 +14,10 @@ import {
 } from "@chakra-ui/react";
 import { IData } from "../App";
 
-const Sidereal: FC<IData> = ({ data }) => {
+const Sidereal: FC<IData> = ({ data, loading }) => {
   return (
     <SimpleGrid minChildWidth="400px" margin="10px" columns={2} spacing={4}>
-      <Ascendant data={data} />
+      <Ascendant data={data} loading={loading} />
       <Box>
         <center style={{ fontSize: "small", fontWeight: "bold" }}>
           <TableContainer>
