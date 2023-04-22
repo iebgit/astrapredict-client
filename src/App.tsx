@@ -25,6 +25,9 @@ export interface IData {
     predicted: any;
     coin_id: String;
     coins: Array<ICoins>;
+    prediction_date: String;
+    prev_predicted: String;
+    prev_date: String;
   };
   loading: boolean;
 }
@@ -42,6 +45,9 @@ function App() {
     predicted: "",
     coin_id: "",
     coins: [],
+    prediction_date: "",
+    prev_predicted: "",
+    prev_date: "",
   });
   const [loading, setLoading] = useState(true);
   const coinId = useSelector((state: RootState) => state.value);
@@ -50,9 +56,12 @@ function App() {
     if (!!coinId?.value) {
       setLoading(true);
       const getPrediction = async () => {
-        const response: any = await axios.get(`http://localhost:5000/predict`, {
-          params: { coinId: coinId.value },
-        });
+        const response: any = await axios.get(
+          `http://localhost:5000/sidereal`,
+          {
+            params: { coinId: coinId.value },
+          }
+        );
         console.log(response.data);
         setData(response.data);
         setLoading(false);
@@ -66,7 +75,7 @@ function App() {
       <Navbar />
       <br />
 
-      {data?.price_change ? (
+      {data?.planets.length > 0 ? (
         <Routes>
           <Route
             path="/prediction"

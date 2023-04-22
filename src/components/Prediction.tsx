@@ -16,7 +16,11 @@ import {
   Progress,
   Stack,
   Image,
+  FormControl,
+  InputGroup,
+  InputRightElement,
 } from "@chakra-ui/react";
+import icon from "../assets/icon.png";
 
 import { IData } from "../App";
 import { useDispatch } from "react-redux";
@@ -31,12 +35,11 @@ const Prediction: FC<IData> = ({ data, loading }) => {
   return (
     <SimpleGrid minChildWidth="400px" margin="10px" columns={2} spacing={4}>
       <Ascendant data={data} loading={loading} />
-      <Box>
+      <Box w="90%">
         {" "}
         <center>
           <Stack direction="row" spacing={1} align="center">
             <Input
-              width={"66%"}
               placeholder={"Enter Coin Id"}
               onChange={(e) => setInput(e.target.value)}
               size="sm"
@@ -44,7 +47,7 @@ const Prediction: FC<IData> = ({ data, loading }) => {
             <Button
               colorScheme="yellow"
               size="sm"
-              width={"25%"}
+              width={"4.25rem"}
               onClick={() => {
                 dispatch(changeCoinId(input.toLowerCase()));
               }}
@@ -60,19 +63,29 @@ const Prediction: FC<IData> = ({ data, loading }) => {
             align="flex-start"
             overflow="hidden"
           >
-            {data?.coins.map((coin, i) => (
+            {data?.coins.length ? (
+              data?.coins.map((coin, i) => (
+                <Image
+                  key={i}
+                  onClick={() => {
+                    dispatch(changeCoinId(coin.id));
+                  }}
+                  title={coin.id.toString()}
+                  width="60px"
+                  padding="10px"
+                  _hover={{ cursor: "pointer" }}
+                  src={coin.image.toString()}
+                ></Image>
+              ))
+            ) : (
               <Image
-                key={i}
-                onClick={() => {
-                  dispatch(changeCoinId(coin.id));
-                }}
-                title={coin.id.toString()}
+                title="placeholder"
                 width="60px"
                 padding="10px"
                 _hover={{ cursor: "pointer" }}
-                src={coin.image.toString()}
+                src={icon}
               ></Image>
-            ))}
+            )}
           </Stack>
 
           {loading ? (
@@ -86,6 +99,9 @@ const Prediction: FC<IData> = ({ data, loading }) => {
               <Thead>
                 <Tr>
                   <Th style={{ color: "white" }}>
+                    <strong>Date</strong>
+                  </Th>
+                  <Th style={{ color: "white" }}>
                     <strong>Description</strong>
                   </Th>
                   <Th style={{ color: "white" }}>24 Hr % Change </Th>
@@ -93,11 +109,26 @@ const Prediction: FC<IData> = ({ data, loading }) => {
               </Thead>
               <Tbody>
                 <Tr>
+                  <Td> {data.prev_date.split(" ")[0]}</Td>
+                  <Td> Predicted</Td>
                   <Td>
                     {" "}
-                    {data.coin_id[0].toUpperCase() + data.coin_id.slice(1)}{" "}
-                    Current{" "}
+                    <span
+                      style={{
+                        color:
+                          Number(data.prev_predicted) * 100 > 0
+                            ? "green"
+                            : "red",
+                        fontWeight: "bold",
+                      }}
+                    >
+                      {(Number(data.prev_predicted) * 100).toFixed(4)} %
+                    </span>
                   </Td>
+                </Tr>
+                <Tr>
+                  <Td> {data.prev_date.split(" ")[0]}</Td>
+                  <Td> Actual</Td>
                   <Td>
                     {" "}
                     <span
@@ -106,15 +137,33 @@ const Prediction: FC<IData> = ({ data, loading }) => {
                         fontWeight: "bold",
                       }}
                     >
-                      {data.price_change.toFixed(4)} %
+                      {Number(data.price_change).toFixed(4)} %
                     </span>
                   </Td>
                 </Tr>
                 <Tr>
                   <Td>
-                    {data.coin_id[0].toUpperCase() + data.coin_id.slice(1)}{" "}
-                    Predicted{" "}
+                    {" "}
+                    <span
+                      style={{
+                        color: "pink",
+                        fontWeight: "bold",
+                      }}
+                    >
+                      {data.prediction_date.split(" ")[0]}
+                    </span>
                   </Td>
+                  <Td>
+                    <span
+                      style={{
+                        color: "pink",
+                        fontWeight: "bold",
+                      }}
+                    >
+                      Future
+                    </span>
+                  </Td>
+
                   <Td>
                     {" "}
                     <span
@@ -123,7 +172,7 @@ const Prediction: FC<IData> = ({ data, loading }) => {
                         fontWeight: "bold",
                       }}
                     >
-                      {(data.predicted * 100).toFixed(4)} %
+                      {(Number(data.predicted) * 100).toFixed(4)} %
                     </span>
                   </Td>
                 </Tr>
@@ -137,3 +186,4 @@ const Prediction: FC<IData> = ({ data, loading }) => {
 };
 
 export default Prediction;
+export {};

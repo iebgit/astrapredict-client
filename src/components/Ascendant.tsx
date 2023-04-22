@@ -38,7 +38,7 @@ const Ascendant: FC<IData> = ({ data }) => {
             {data.location.city}, {data.location.region}
           </strong>
           <br />
-          <small>{data.location.time}</small>
+          <small>{data.location.time.split(".")[0]}</small>
         </h5>
         <br />
         <div style={{ justifyContent: "space-between" }}>
@@ -64,3 +64,4 @@ const Ascendant: FC<IData> = ({ data }) => {
 };
 
 export default Ascendant;
+export {};
