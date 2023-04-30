@@ -36,8 +36,8 @@ const Prediction: FC<IData> = ({ data, loading }) => {
       <Ascendant data={data} loading={loading} />
       <Box w="90%">
         {" "}
-        <center>
-          {/* <Stack direction="row" spacing={1} align="center">
+        <center style={{ fontSize: "small", fontWeight: "bold" }}>
+          <Stack direction="row" spacing={1} align="center">
             <Input
               placeholder={"Enter Coin Id"}
               onChange={(e) => setInput(e.target.value)}
@@ -53,7 +53,7 @@ const Prediction: FC<IData> = ({ data, loading }) => {
             >
               Submit
             </Button>
-          </Stack> */}
+          </Stack>
 
           <Stack
             overflowX="auto"

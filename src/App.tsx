@@ -79,14 +79,22 @@ function App() {
         <Route
           path="/prediction"
           element={
-            !loading ? <Prediction data={data} loading={loading} /> : <Loader />
+            !loading && data.planets.length ? (
+              <Prediction data={data} loading={loading} />
+            ) : (
+              <Loader />
+            )
           }
         />
         <Route path="/info" element={<AstraPredict />} />
         <Route
           path="/sidereal"
           element={
-            !loading ? <Sidereal data={data} loading={loading} /> : <Loader />
+            !loading && data.planets.length ? (
+              <Sidereal data={data} loading={loading} />
+            ) : (
+              <Loader />
+            )
           }
         />
         <Route path="/" element={<Landing />} />
