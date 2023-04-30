@@ -8,11 +8,14 @@ import {
   useColorModeValue,
   Flex,
   Image,
+  Button,
 } from "@chakra-ui/react";
 import hermeticImage from "../assets/aquarius0.png";
 import starImage from "../assets/aquarius2.png";
+import { useNavigate } from "react-router-dom";
 
 const Landing: React.FC = () => {
+  const navigate = useNavigate();
   return (
     <Box p="6">
       <Flex>
@@ -55,15 +58,25 @@ const Landing: React.FC = () => {
           <Text fontSize="md" mb="6">
             The precession of the equinox is a gradual shift in the orientation
             of the Earth's axis of rotation, which causes the position of the
-            equinoxes to move slowly over time. This phenomenon is caused by the
-            gravitational pull of the Sun and Moon on the Earth's equatorial
-            bulge, which causes a slight wobble in the Earth's rotation. As a
-            result of this wobble, the position of the vernal equinox (the point
-            on the celestial sphere where the ecliptic and the celestial equator
-            intersect, and which marks the beginning of spring in the Northern
-            Hemisphere) moves westward along the ecliptic at a rate of about 1
-            degree every 72 years.
+            equinoxes to move slowly over time. As a result, the position of the
+            vernal equinox moves westward along the ecliptic at a rate of about
+            1 degree every 72 years. Check out the true position of the stars
+            based on your location:
           </Text>
+          <Button
+            as={"a"}
+            display={{ base: "none", md: "inline-flex" }}
+            fontSize={"sm"}
+            fontWeight={600}
+            color={"white"}
+            bg={"orange.400"}
+            onClick={() => navigate("/sidereal")}
+            _hover={{
+              bg: "orange.300",
+            }}
+          >
+            Current Positions
+          </Button>
         </div>
         <Image
           display={{ base: "none", md: "flex" }}
