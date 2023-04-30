@@ -20,8 +20,8 @@ const AstraPredict: React.FC = () => {
         About
       </Heading>
       <Text fontSize="lg" mb="6">
-        AstraPredict is a program that uses TensorFlow to make predictions for
-        cryptocurrency price changes based on sidereal astrology positions.
+        AstraPredict is a program that uses TensorFlow to make predictions based
+        on sidereal astrology positions.
       </Text>
       <Heading
         as="h2"
@@ -34,9 +34,9 @@ const AstraPredict: React.FC = () => {
       <Text fontSize="md" mb="6">
         AstraPredict uses a machine learning algorithm to analyze the sidereal
         astrology positions of various celestial bodies and their corresponding
-        effects on cryptocurrency prices. The algorithm takes into account
-        historical price data, current astrology positions, and other relevant
-        factors to generate predictions for future price changes.
+        effects on events and markets. The algorithm takes into account
+        historical data, current astrology positions, and other relevant factors
+        to generate predictions for the future.
       </Text>
       <Heading
         as="h2"
@@ -47,16 +47,13 @@ const AstraPredict: React.FC = () => {
         Benefits
       </Heading>
       <UnorderedList mb="6">
-        <ListItem>
-          Provides an alternative approach to cryptocurrency price prediction.
-        </ListItem>
+        <ListItem>Provides an alternative approach to prediction.</ListItem>
         <ListItem>
           Can potentially provide more accurate predictions than traditional
           methods.
         </ListItem>
         <ListItem>
-          Allows users to explore the relationship between astrology and
-          financial markets.
+          Allows users to explore the relationship between astrology and events.
         </ListItem>
       </UnorderedList>
       <Heading
@@ -73,13 +70,8 @@ const AstraPredict: React.FC = () => {
           astrology data.
         </ListItem>
         <ListItem>
-          Results may vary depending on the specific cryptocurrency being
-          analyzed.
-        </ListItem>
-        <ListItem>
           The program may not account for other important factors that can
-          affect cryptocurrency prices, such as news events or regulatory
-          changes.
+          affect events, such as news or regulatory changes.
         </ListItem>
       </UnorderedList>
       <Heading
@@ -92,9 +84,8 @@ const AstraPredict: React.FC = () => {
       </Heading>
       <Text fontSize="md" mb="6">
         AstraPredict is a unique and innovative program that explores the
-        relationship between astrology and cryptocurrency prices. While it may
-        have some limitations, it has the potential to provide valuable insights
-        for investors and traders in the cryptocurrency market.
+        relationship between astrology and events. While it may have some
+        limitations, it has the potential to provide valuable insights.
       </Text>
     </Box>
   );

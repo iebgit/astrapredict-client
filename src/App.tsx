@@ -5,6 +5,7 @@ import Prediction from "./components/Prediction";
 import Sidereal from "./components/Sidereal";
 import Navbar from "./components/Navbar";
 import Loader from "./components/Loader";
+import Landing from "./components/Landing";
 import Footer from "./components/Footer";
 import { Routes, Route } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -74,22 +75,22 @@ function App() {
     <div className="App-header">
       <Navbar />
       <br />
-
-      {data?.planets.length > 0 ? (
-        <Routes>
-          <Route
-            path="/prediction"
-            element={<Prediction data={data} loading={loading} />}
-          />
-          <Route path="/info" element={<AstraPredict />} />
-          <Route
-            path="/"
-            element={<Sidereal data={data} loading={loading} />}
-          />
-        </Routes>
-      ) : (
-        <Loader />
-      )}
+      <Routes>
+        <Route
+          path="/prediction"
+          element={
+            !loading ? <Prediction data={data} loading={loading} /> : <Loader />
+          }
+        />
+        <Route path="/info" element={<AstraPredict />} />
+        <Route
+          path="/sidereal"
+          element={
+            !loading ? <Sidereal data={data} loading={loading} /> : <Loader />
+          }
+        />
+        <Route path="/" element={<Landing />} />
+      </Routes>
       <br />
       <br />
       <Footer />

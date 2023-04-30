@@ -58,21 +58,23 @@ export default function Navbar() {
           fontWeight="bold"
           fontSize="20px"
           flex={{ base: 1 }}
-          justify={{ base: "center", md: "start" }}
+          justify={{ base: "space-between", md: "space-between" }}
         >
-          <Image
-            marginRight={"10px"}
-            boxSize="30px"
-            src={icon}
-            alt="AstraPredict"
-          />{" "}
-          <Text
-            textAlign={useBreakpointValue({ base: "center", md: "end" })}
-            fontFamily={"heading"}
-            color={useColorModeValue("orange.300", "white")}
-          >
-            AstraPredict
-          </Text>
+          <Link style={{ display: "flex", justifyContent: "start" }} to={"./"}>
+            <Image
+              marginRight={"10px"}
+              boxSize="30px"
+              src={icon}
+              alt="AstraPredict"
+            />{" "}
+            <Text
+              textAlign={useBreakpointValue({ base: "center", md: "end" })}
+              fontFamily={"heading"}
+              color={useColorModeValue("orange.300", "white")}
+            >
+              AstraPredict
+            </Text>
+          </Link>
           <Flex display={{ base: "none", md: "flex" }} ml={10}>
             <DesktopNav />
           </Flex>
@@ -265,8 +267,8 @@ interface NavItem {
 
 const NAV_ITEMS: Array<NavItem> = [
   {
-    label: "Home",
-    link: "./",
+    label: "Sidereal",
+    link: "./sidereal",
   },
 
   {

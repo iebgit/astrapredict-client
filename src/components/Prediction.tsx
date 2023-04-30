@@ -1,6 +1,7 @@
 import "../App.css";
 import Ascendant from "./Ascendant";
-import { FC, useState } from "react";
+import { FC, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Box,
   SimpleGrid,
@@ -21,7 +22,6 @@ import {
   InputRightElement,
 } from "@chakra-ui/react";
 import icon from "../assets/icon.png";
-
 import { IData } from "../App";
 import { useDispatch } from "react-redux";
 import { changeCoinId } from "../coinIdSlice";
@@ -30,7 +30,6 @@ const Prediction: FC<IData> = ({ data, loading }) => {
   const [id, setId] = useState("bitcoin");
   const [input, setInput] = useState("bitcoin");
   const dispatch = useDispatch();
-  console.log(loading);
 
   return (
     <SimpleGrid minChildWidth="400px" margin="10px" columns={2} spacing={4}>

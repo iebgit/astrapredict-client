@@ -1,5 +1,5 @@
 import "../App.css";
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import Ascendant from "./Ascendant";
 import {
   Box,
@@ -13,7 +13,6 @@ import {
   TableContainer,
 } from "@chakra-ui/react";
 import { IData } from "../App";
-
 const Sidereal: FC<IData> = ({ data, loading }) => {
   return (
     <SimpleGrid minChildWidth="400px" margin="10px" columns={2} spacing={4}>
