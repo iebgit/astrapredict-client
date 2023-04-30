@@ -57,7 +57,7 @@ function App() {
       setLoading(true);
       const getPrediction = async () => {
         const response: any = await axios.get(
-          `http://localhost:5000/sidereal`,
+          `https://astrapredict.onrender.com/sidereal`,
           {
             params: { coinId: coinId.value },
           }
