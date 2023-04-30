@@ -79,7 +79,7 @@ function App() {
         <Route
           path="/prediction"
           element={
-            !loading && data.planets.length ? (
+            !loading && !!data?.planets?.length ? (
               <Prediction data={data} loading={loading} />
             ) : (
               <Loader />
@@ -90,7 +90,7 @@ function App() {
         <Route
           path="/sidereal"
           element={
-            !loading && data.planets.length ? (
+            !loading && !!data?.planets?.length ? (
               <Sidereal data={data} loading={loading} />
             ) : (
               <Loader />
