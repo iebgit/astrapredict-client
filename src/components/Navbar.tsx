@@ -22,7 +22,7 @@ import {
   ChevronDownIcon,
   ChevronRightIcon,
 } from "@chakra-ui/icons";
-import icon from "../assets/icon.png";
+import icon from "../assets/astrapredict-icon.png";
 
 export default function Navbar() {
   const { isOpen, onToggle } = useDisclosure();
