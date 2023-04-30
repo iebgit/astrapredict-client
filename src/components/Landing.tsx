@@ -3,8 +3,6 @@ import {
   Box,
   Heading,
   Text,
-  UnorderedList,
-  ListItem,
   useColorModeValue,
   Flex,
   Image,
@@ -34,10 +32,10 @@ const Landing: React.FC = () => {
             size="lg"
             mb="6"
           >
-            The precession of the equinox
+            Why AstraPredict is better
           </Heading>
           <Text fontSize="lg" mb="6">
-            AstraPredict uses a far more accurate system of tracking the
+            AstraPredict uses a far more accurate system for tracking the
             location of celestial bodies through constellations. We use sidereal
             astrology which, unlike the more common tropical system, takes into
             account the precession of the equinox.
