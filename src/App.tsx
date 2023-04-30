@@ -10,7 +10,6 @@ import Footer from "./components/Footer";
 import { Routes, Route } from "react-router-dom";
 import { useSelector } from "react-redux";
 import type { RootState } from "./store";
-import AstraPredict from "./components/AstraPredict";
 
 export interface IData {
   data: {
@@ -85,7 +84,6 @@ function App() {
             )
           }
         />
-        <Route path="/info" element={<AstraPredict />} />
         <Route
           path="/sidereal"
           element={

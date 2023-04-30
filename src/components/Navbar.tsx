@@ -275,9 +275,4 @@ const NAV_ITEMS: Array<NavItem> = [
     label: "Prediction",
     link: "./prediction",
   },
-
-  {
-    label: "About",
-    link: "./info",
-  },
 ];
