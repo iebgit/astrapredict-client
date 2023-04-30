@@ -34,13 +34,13 @@ const Landing: React.FC = () => {
             size="lg"
             mb="6"
           >
-            The procession of the equinox
+            The precession of the equinox
           </Heading>
           <Text fontSize="lg" mb="6">
             AstraPredict uses a far more accurate system of tracking the
             location of celestial bodies through constellations. We use sidereal
             astrology which, unlike the more common tropical system, takes into
-            account the procession of the equinox.
+            account the precession of the equinox.
           </Text>
         </div>
       </Flex>
@@ -53,7 +53,7 @@ const Landing: React.FC = () => {
             mb="6"
             color={useColorModeValue("orange.200", "orange.500")}
           >
-            What is the procession of the equinox?
+            What is the precession of the equinox?
           </Heading>
           <Text fontSize="md" mb="6">
             The precession of the equinox is a gradual shift in the orientation
