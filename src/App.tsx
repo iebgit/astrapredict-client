@@ -63,7 +63,6 @@ function App() {
             params: { coinId: coinId.value },
           }
         );
-        console.log(response.data);
         setData(response.data);
         setLoading(false);
       };

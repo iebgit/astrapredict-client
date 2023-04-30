@@ -93,7 +93,7 @@ const Prediction: FC<IData> = ({ data, loading }) => {
             <Progress size="xs" colorScheme="yellow" />
           )}
 
-          <TableContainer style={{ fontSize: "large", fontWeight: "bold" }}>
+          <TableContainer style={{ fontSize: "small", fontWeight: "bold" }}>
             <Table>
               <Thead>
                 <Tr>
