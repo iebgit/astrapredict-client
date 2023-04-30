@@ -78,7 +78,7 @@ export default function Navbar() {
           </Flex>
         </Flex>
 
-        <Stack
+        {/* <Stack
           flex={{ base: 1, md: 0 }}
           justify={"flex-end"}
           direction={"row"}
@@ -111,7 +111,7 @@ export default function Navbar() {
           >
             Sign Up
           </Button>
-        </Stack>
+        </Stack> */}
       </Flex>
 
       <Collapse in={isOpen} animateOpacity>
@@ -201,7 +201,7 @@ const DesktopSubNav = ({ label, link }: NavItem) => {
 const MobileNav = () => {
   return (
     <Stack
-      bg={useColorModeValue("white", "orange.800")}
+      bg={useColorModeValue("grey.800", "orange.800")}
       p={4}
       display={{ md: "none" }}
     >
