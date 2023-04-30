@@ -65,6 +65,7 @@ const Landing: React.FC = () => {
           </Text>
           <Button
             as={"a"}
+            cursor="pointer"
             display={{ base: "none", md: "inline-flex" }}
             fontSize={"sm"}
             fontWeight={600}
