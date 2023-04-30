@@ -1,6 +1,6 @@
 # ⭐ Astra Predict
 
-![My Image](./src/assets/screen.png)
+![alt text](./src/assets/preview.gif)
 
 General overview:
 ![My Image](./src/assets/schema.png)
