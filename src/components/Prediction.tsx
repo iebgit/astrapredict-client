@@ -103,7 +103,7 @@ const Prediction: FC<IData> = ({ data, loading }) => {
                   <Th style={{ color: "white" }}>
                     <strong>Description</strong>
                   </Th>
-                  <Th style={{ color: "white" }}>24 Hr % Change </Th>
+                  <Th style={{ color: "white" }}>24 Hr %∆ </Th>
                 </Tr>
               </Thead>
               <Tbody>
