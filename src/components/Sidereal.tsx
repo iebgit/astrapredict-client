@@ -34,7 +34,7 @@ const Sidereal: FC<IData> = ({ data, loading }) => {
   return (
     <SimpleGrid minChildWidth="400px" margin="10px" columns={2} spacing={4}>
       <Ascendant data={data} loading={loading} />
-      <Box>
+      <Box w="90%">
         <center style={{ fontSize: "small", fontWeight: "bold" }}>
           <Stack direction="row" spacing={1} align="center">
             <div style={{ color: "grey", width: "100%" }}>
