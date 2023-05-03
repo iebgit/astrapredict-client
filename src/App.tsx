@@ -10,6 +10,20 @@ import Footer from "./components/Footer";
 import { Routes, Route } from "react-router-dom";
 import { useSelector } from "react-redux";
 import type { RootState } from "./store";
+import { useDispatch } from "react-redux";
+import { changeLocation } from "./slice/location.slice";
+
+const defaultData = {
+  planets: [],
+  location: { city: "", ip: "", region: "", country: "", time: "" },
+  price_change: 0,
+  predicted: "",
+  coin_id: "",
+  coins: [],
+  prediction_date: "",
+  prev_predicted: "",
+  prev_date: "",
+};
 
 export interface IData {
   data: {
@@ -38,36 +52,64 @@ interface ICoins {
 }
 
 function App() {
-  const [data, setData] = useState({
-    planets: [],
-    location: { city: "", ip: "", region: "", country: "", time: "" },
-    price_change: 0,
-    predicted: "",
-    coin_id: "",
-    coins: [],
-    prediction_date: "",
-    prev_predicted: "",
-    prev_date: "",
-  });
+  const [data, setData] = useState(defaultData);
   const [loading, setLoading] = useState(true);
-  const coinId = useSelector((state: RootState) => state.value);
-
+  const slice = useSelector((state: RootState) => state);
+  const dispatch = useDispatch();
   useEffect(() => {
-    if (!!coinId?.value) {
+    if (!!slice?.coinIdReducer?.coinId) {
       setLoading(true);
       const getPrediction = async () => {
         const response: any = await axios.get(
-          `https://astrapredict.onrender.com/sidereal`,
+          `http://localhost:5000/crypto-sidereal`,
           {
-            params: { coinId: coinId.value },
+            params: { coinId: slice.coinIdReducer.coinId },
           }
         );
         setData(response.data);
         setLoading(false);
+        dispatch(
+          changeLocation({
+            data: {
+              region: response.data.location.region,
+              city: response.data.location.city,
+              country: response.data.location.country,
+            },
+            date: slice.locationReducer.location.date,
+          })
+        );
       };
       getPrediction();
     }
-  }, [coinId]);
+  }, [slice.coinIdReducer.coinId]);
+
+  useEffect(() => {
+    if (data?.planets?.length > 0 && slice?.locationReducer?.location?.date) {
+      setLoading(true);
+      const getPrediction = async () => {
+        try {
+          const response: any = await axios.get(
+            `http://localhost:5000/custom-sidereal`,
+            {
+              params: {
+                country: slice.locationReducer.location.data?.country,
+                region: slice.locationReducer.location.data?.region,
+                city: slice.locationReducer.location.data?.city,
+                date: slice.locationReducer.location.date,
+              },
+            }
+          );
+          console.log(response);
+          setData({ ...data, planets: response.data.data });
+          setLoading(false);
+        } catch (e) {
+          console.log(e);
+          setLoading(false);
+        }
+      };
+      getPrediction();
+    }
+  }, [slice.locationReducer.location]);
 
   return (
     <div className="App-header">

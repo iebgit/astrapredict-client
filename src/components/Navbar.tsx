@@ -60,6 +60,9 @@ export default function Navbar() {
           flex={{ base: 1 }}
           justify={{ base: "space-between", md: "space-between" }}
         >
+          <Flex display={{ base: "none", md: "flex" }} ml={10}>
+            <DesktopNav />
+          </Flex>
           <Link style={{ display: "flex", justifyContent: "start" }} to={"./"}>
             <Image
               marginRight={"10px"}
@@ -68,6 +71,7 @@ export default function Navbar() {
               alt="AstraPredict"
             />{" "}
             <Text
+              display={{ base: "none", md: "flex" }}
               textAlign={useBreakpointValue({ base: "center", md: "end" })}
               fontFamily={"heading"}
               color={useColorModeValue("orange.300", "white")}
@@ -75,9 +79,6 @@ export default function Navbar() {
               AstraPredict
             </Text>
           </Link>
-          <Flex display={{ base: "none", md: "flex" }} ml={10}>
-            <DesktopNav />
-          </Flex>
         </Flex>
 
         {/* <Stack

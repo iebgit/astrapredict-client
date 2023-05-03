@@ -42,7 +42,7 @@ const Landing: React.FC = () => {
           </Text>
         </div>
       </Flex>
-
+      <br />
       <Flex>
         <div style={{ padding: "5%" }}>
           <Heading

@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
-import coinIdReducer from './coinIdSlice'
+import coinIdReducer from './slice/coinId.slice'
+import locationReducer from './slice/location.slice'
 
 const store = configureStore({
   reducer: {
-    value: coinIdReducer
+    coinIdReducer,
+    locationReducer
   },
 })
 export default store

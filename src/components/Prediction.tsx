@@ -24,7 +24,7 @@ import {
 import icon from "../assets/icon.png";
 import { IData } from "../App";
 import { useDispatch } from "react-redux";
-import { changeCoinId } from "../coinIdSlice";
+import { changeCoinId } from "../slice/coinId.slice";
 
 const Prediction: FC<IData> = ({ data, loading }) => {
   const [id, setId] = useState("bitcoin");
@@ -38,14 +38,15 @@ const Prediction: FC<IData> = ({ data, loading }) => {
         {" "}
         <center style={{ fontSize: "small", fontWeight: "bold" }}>
           <Stack direction="row" spacing={1} align="center">
-            <Input
-              placeholder={"Enter Coin Id"}
-              onChange={(e) => setInput(e.target.value)}
-              size="sm"
-            />
+            <div style={{ color: "grey", width: "100%" }}>
+              <Input
+                placeholder={"Enter Coin Id"}
+                onChange={(e) => setInput(e.target.value)}
+              />
+            </div>
+
             <Button
               colorScheme="yellow"
-              size="sm"
               width={"4.25rem"}
               onClick={() => {
                 dispatch(changeCoinId(input.toLowerCase()));
