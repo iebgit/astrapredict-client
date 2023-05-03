@@ -10,6 +10,7 @@ import {
 } from "@chakra-ui/react";
 import hermeticImage from "../assets/aquarius0.png";
 import starImage from "../assets/aquarius2.png";
+import placeholder from "../assets/icon.png";
 import { useNavigate } from "react-router-dom";
 
 const Landing: React.FC = () => {
@@ -22,7 +23,7 @@ const Landing: React.FC = () => {
           borderRadius="50%"
           maxWidth="33%"
           maxHeight="33%"
-          src={hermeticImage}
+          src={hermeticImage ? hermeticImage : placeholder}
           alt="hermetic-image"
         />
         <div style={{ padding: "5%" }}>
@@ -35,10 +36,12 @@ const Landing: React.FC = () => {
             Why AstraPredict is better
           </Heading>
           <Text fontSize="lg" mb="6">
-            AstraPredict uses a far more accurate system for tracking the
-            location of celestial bodies through constellations. We use sidereal
-            astrology which, unlike the more common tropical system, takes into
-            account the precession of the equinox.
+            AstraPredict's mission is to identify patterns that may exist
+            between sidereal astrology and phenomena that influence human
+            behavior and can thus be used to make predictions. The principle
+            advantage of this system is that it contradicts the most prevalent
+            perspective in the west and is far more accurate due to the
+            precession of the equinox.
           </Text>
         </div>
       </Flex>

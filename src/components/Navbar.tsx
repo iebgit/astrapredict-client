@@ -63,7 +63,14 @@ export default function Navbar() {
           <Flex display={{ base: "none", md: "flex" }} ml={10}>
             <DesktopNav />
           </Flex>
-          <Link style={{ display: "flex", justifyContent: "start" }} to={"./"}>
+          <Link
+            style={{
+              display: "flex",
+              justifyContent: "start",
+              marginRight: "5%",
+            }}
+            to={"./"}
+          >
             <Image
               marginRight={"10px"}
               boxSize="30px"
