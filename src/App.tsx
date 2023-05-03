@@ -60,7 +60,7 @@ function App() {
       setLoading(true);
       const getPrediction = async () => {
         const response: any = await axios.get(
-          `http://localhost:5000/crypto-sidereal`,
+          `https://astrapredict.onrender.com/crypto-sidereal`,
           {
             params: { coinId: slice.coinIdReducer.coinId },
           }
@@ -92,7 +92,7 @@ function App() {
       const getPrediction = async () => {
         try {
           const response: any = await axios.get(
-            `http://localhost:5000/custom-sidereal`,
+            `https://astrapredict.onrender.com/custom-sidereal`,
             {
               params: {
                 country: slice.locationReducer.location.data?.country,
