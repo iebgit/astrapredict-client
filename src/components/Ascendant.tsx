@@ -2,10 +2,13 @@ import "../App.css";
 import { useState, FC } from "react";
 import { Box } from "@chakra-ui/react";
 import { IData } from "../App";
+import { useSelector } from "react-redux";
+import type { RootState } from "../store";
 
 const regexPattern = /[^A-Za-z]/g;
 
 const Ascendant: FC<IData> = ({ data }) => {
+  const slice = useSelector((state: RootState) => state);
   const [images, setImages] = useState(
     importAll(require.context("../assets", false, /\.(png|jpe?g|svg)$/))
   );
@@ -38,7 +41,12 @@ const Ascendant: FC<IData> = ({ data }) => {
             {data.location.city}, {data.location.region}
           </strong>
           <br />
-          <small>{data.location.time.split(".")[0]}</small>
+          <small>
+            {!!slice?.locationReducer?.location?.date
+              ? slice.locationReducer.location.date
+              : data.location.time.split(" ")[0]}{" "}
+            {data.location.time.split(" ")[1].split(".")[0]}
+          </small>
         </h5>
         <br />
         <div style={{ justifyContent: "space-between" }}>
