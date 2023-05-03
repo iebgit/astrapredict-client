@@ -13,18 +13,6 @@ import type { RootState } from "./store";
 import { useDispatch } from "react-redux";
 import { changeLocation } from "./slice/location.slice";
 
-const defaultData = {
-  planets: [],
-  location: { city: "", ip: "", region: "", country: "", time: "" },
-  price_change: 0,
-  predicted: "",
-  coin_id: "",
-  coins: [],
-  prediction_date: "",
-  prev_predicted: "",
-  prev_date: "",
-};
-
 export interface IData {
   data: {
     planets: Array<any>;
@@ -52,6 +40,17 @@ interface ICoins {
 }
 
 function App() {
+  const defaultData = {
+    planets: [],
+    location: { city: "", ip: "", region: "", country: "", time: "" },
+    price_change: 0,
+    predicted: "",
+    coin_id: "",
+    coins: [],
+    prediction_date: "",
+    prev_predicted: "",
+    prev_date: "",
+  };
   const [data, setData] = useState(defaultData);
   const [loading, setLoading] = useState(true);
   const slice = useSelector((state: RootState) => state);
@@ -66,6 +65,7 @@ function App() {
             params: { coinId: slice.coinIdReducer.coinId },
           }
         );
+        console.log(response);
         setData(response.data);
         setLoading(false);
         dispatch(
@@ -84,7 +84,10 @@ function App() {
   }, [slice.coinIdReducer.coinId]);
 
   useEffect(() => {
-    if (data?.planets?.length > 0 && slice?.locationReducer?.location?.date) {
+    if (
+      slice?.locationReducer?.location?.date &&
+      slice.coinIdReducer.coinId === data.coin_id
+    ) {
       setLoading(true);
       const getPrediction = async () => {
         try {
@@ -100,7 +103,11 @@ function App() {
             }
           );
           console.log(response);
-          setData({ ...data, planets: response.data.data });
+          setData({
+            ...data,
+            coin_id: slice.coinIdReducer.coinId.toString(),
+            planets: response.data.data,
+          });
           setLoading(false);
         } catch (e) {
           console.log(e);
