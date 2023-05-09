@@ -12,6 +12,7 @@ import { useSelector } from "react-redux";
 import type { RootState } from "./store";
 import { useDispatch } from "react-redux";
 import { changeLocation } from "./slice/location.slice";
+import { baseURL } from "./constants";
 
 export interface IData {
   data: {
@@ -61,12 +62,9 @@ function App() {
 
       setLoading(true);
       const getPrediction = async () => {
-        const response: any = await axios.get(
-          `https:/terraform.thecryptome.com/crypto-sidereal`,
-          {
-            params: { coinId: slice.coinIdReducer.coinId },
-          }
-        );
+        const response: any = await axios.get(`${baseURL}/crypto-sidereal`, {
+          params: { coinId: slice.coinIdReducer.coinId },
+        });
         data.location.city
           ? setData({
               ...data,
@@ -104,17 +102,14 @@ function App() {
       setLoading(true);
       const getPrediction = async () => {
         try {
-          const response: any = await axios.get(
-            `https:/terraform.thecryptome.com/custom-sidereal`,
-            {
-              params: {
-                country: slice.locationReducer.location.data?.country,
-                region: slice.locationReducer.location.data?.region,
-                city: slice.locationReducer.location.data?.city,
-                date: slice.locationReducer.location.date,
-              },
-            }
-          );
+          const response: any = await axios.get(`${baseURL}/custom-sidereal`, {
+            params: {
+              country: slice.locationReducer.location.data?.country,
+              region: slice.locationReducer.location.data?.region,
+              city: slice.locationReducer.location.data?.city,
+              date: slice.locationReducer.location.date,
+            },
+          });
           setData({
             ...data,
             coin_id: slice.coinIdReducer.coinId.toString(),
