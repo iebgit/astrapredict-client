@@ -57,16 +57,28 @@ function App() {
   const dispatch = useDispatch();
   useEffect(() => {
     if (!!slice?.coinIdReducer?.coinId) {
+      console.log("id");
+
       setLoading(true);
       const getPrediction = async () => {
         const response: any = await axios.get(
-          `https://astrapredict.onrender.com/crypto-sidereal`,
+          `https:/terraform.thecryptome.com/crypto-sidereal`,
           {
             params: { coinId: slice.coinIdReducer.coinId },
           }
         );
-        console.log(response);
-        setData(response.data);
+        data.location.city
+          ? setData({
+              ...data,
+              price_change: response.data.price_change,
+              predicted: response.data.predicted,
+              coin_id: response.data.coin_id,
+              coins: response.data.coins,
+              prediction_date: response.data.prediction_date,
+              prev_predicted: response.data.prev_predicted,
+              prev_date: response.data.prev_date,
+            })
+          : setData(response.data);
         setLoading(false);
         dispatch(
           changeLocation({
@@ -88,11 +100,12 @@ function App() {
       slice?.locationReducer?.location?.date &&
       slice.coinIdReducer.coinId === data.coin_id
     ) {
+      console.log("location");
       setLoading(true);
       const getPrediction = async () => {
         try {
           const response: any = await axios.get(
-            `https://astrapredict.onrender.com/custom-sidereal`,
+            `https:/terraform.thecryptome.com/custom-sidereal`,
             {
               params: {
                 country: slice.locationReducer.location.data?.country,
@@ -102,7 +115,6 @@ function App() {
               },
             }
           );
-          console.log(response);
           setData({
             ...data,
             coin_id: slice.coinIdReducer.coinId.toString(),

@@ -21,8 +21,7 @@ const Landing: React.FC = () => {
         <Image
           display={{ base: "none", md: "flex" }}
           borderRadius="50%"
-          maxWidth="33%"
-          maxHeight="33%"
+          maxWidth="30%"
           src={hermeticImage ? hermeticImage : placeholder}
           alt="hermetic-image"
         />
@@ -70,8 +69,8 @@ const Landing: React.FC = () => {
             display={{ base: "inline-flex" }}
             fontSize={"sm"}
             fontWeight={600}
-            color={"white"}
-            bg={"orange.400"}
+            color={"black"}
+            colorScheme="yellow"
             onClick={() => navigate("/sidereal")}
             _hover={{
               bg: "orange.300",
@@ -83,8 +82,7 @@ const Landing: React.FC = () => {
         <Image
           display={{ base: "none", md: "flex" }}
           borderRadius="50%"
-          maxWidth="33%"
-          maxHeight="33%"
+          maxWidth="30%"
           src={starImage}
           alt="star-image"
         />

@@ -11,6 +11,7 @@ import {
   Tr,
   Th,
   Td,
+  TableCaption,
   TableContainer,
   Input,
   Button,
@@ -23,13 +24,19 @@ import {
 } from "@chakra-ui/react";
 import icon from "../assets/icon.png";
 import { IData } from "../App";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { changeCoinId } from "../slice/coinId.slice";
+import type { RootState } from "../store";
 
 const Prediction: FC<IData> = ({ data, loading }) => {
-  const [id, setId] = useState("bitcoin");
+  const slice = useSelector((state: RootState) => state);
+  const [id, setId] = useState(slice.locationReducer.location.date);
   const [input, setInput] = useState("bitcoin");
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    setId(slice.locationReducer.location.date);
+  }, [slice.locationReducer.location.date]);
 
   return (
     <SimpleGrid minChildWidth="400px" margin="10px" columns={2} spacing={4}>
@@ -107,6 +114,9 @@ const Prediction: FC<IData> = ({ data, loading }) => {
                   <Th style={{ color: "white" }}>24 Hr %∆ </Th>
                 </Tr>
               </Thead>
+              <TableCaption>
+                {data?.coin_id ? data.coin_id : "bitcoin"} predictions
+              </TableCaption>
               <Tbody>
                 <Tr>
                   <Td> {data.prev_date.split(" ")[0]}</Td>

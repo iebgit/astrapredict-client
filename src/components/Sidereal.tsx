@@ -7,9 +7,11 @@ import {
   Table,
   Thead,
   Tbody,
+  Tfoot,
   Tr,
   Th,
   Td,
+  TableCaption,
   TableContainer,
   Input,
   Button,
@@ -70,6 +72,10 @@ const Sidereal: FC<IData> = ({ data, loading }) => {
                   </Th>
                 </Tr>
               </Thead>
+              <TableCaption>
+                Sidereal Positions {moment(date).format("YYYY-MM-DD")}
+              </TableCaption>
+
               <Tbody>
                 {data.planets.slice(1).map((planet, i) => {
                   return (
