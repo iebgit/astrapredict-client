@@ -1,13 +1,12 @@
-# ⭐ Astra Predict
+# AstraPredict
 
 ![alt text](./src/assets/preview.gif)
 
-General overview:
-![My Image](./src/assets/schema.png)
+Astrology is the ancient art of making predictions using the location of celestial bodies. AstraPredict seeks to modernize this art by implementing cutting-edge technology and knowledge of the true position of stars.
 
-AstraPredict attempts to answer an ancient question:
-Can the stars predict the future?
+What makes astrapredict different?
 
-This project sets out to answer this question using machine learning to train models with historical data to see if any useful predictions can be made using the position of the planets in constellations.
+- We take into account the precession of the equinox
+- We use ML and AI to make predictions
 
-Behind the scenes, the backend code whips up a machine learning model trained using the sidereal astrology position and the historical price of bitcoin. Once created, we are able to use any astrological position data to make a prediction for the bitcoin change at that time.
+Behind the scenes, the backend code uses machine learning models trained with the sidereal astrology position and the historical price of crypto-currencies. Once created, we are able to use any astrological position data to make a prediction for the price change at that time.

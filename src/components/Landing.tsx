@@ -32,7 +32,7 @@ const Landing: React.FC = () => {
             size="lg"
             mb="6"
           >
-            Why AstraPredict is better
+            Why We Are The Best
           </Heading>
           <Text fontSize="lg" mb="6">
             AstraPredict's mission is to identify patterns that may exist
@@ -53,7 +53,7 @@ const Landing: React.FC = () => {
             mb="6"
             color={useColorModeValue("orange.200", "orange.500")}
           >
-            What is the precession of the equinox?
+            What Is The Precession Of The Equinox?
           </Heading>
           <Text fontSize="md" mb="6">
             The precession of the equinox is a gradual shift in the orientation
