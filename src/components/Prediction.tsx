@@ -1,6 +1,7 @@
 import "../App.css";
 import Ascendant from "./Ascendant";
 import { FC, useState, useEffect } from "react";
+import { getMarketData } from "./Coingecko";
 import { useNavigate } from "react-router-dom";
 import {
   Box,
@@ -18,9 +19,6 @@ import {
   Progress,
   Stack,
   Image,
-  FormControl,
-  InputGroup,
-  InputRightElement,
 } from "@chakra-ui/react";
 import icon from "../assets/icon.png";
 import { IData } from "../App";
@@ -28,15 +26,31 @@ import { useDispatch, useSelector } from "react-redux";
 import { changeCoinId } from "../slice/coinId.slice";
 import type { RootState } from "../store";
 
+interface coinsArray {
+  data: Array<any>;
+}
+
 const Prediction: FC<IData> = ({ data, loading }) => {
   const slice = useSelector((state: RootState) => state);
   const [id, setId] = useState(slice.locationReducer.location.date);
   const [input, setInput] = useState("bitcoin");
+  const [coins, setCoins] = useState<coinsArray>({ data: [] });
   const dispatch = useDispatch();
 
   useEffect(() => {
     setId(slice.locationReducer.location.date);
   }, [slice.locationReducer.location.date]);
+
+  useEffect(() => {
+    if (coins?.data?.length === 0) {
+      const getCoinsImages = async () => {
+        const coinsArray = await getMarketData(data.coins);
+        console.log(coinsArray);
+        setCoins(coinsArray);
+      };
+      getCoinsImages();
+    }
+  }, []);
 
   return (
     <SimpleGrid minChildWidth="400px" margin="10px" columns={2} spacing={4}>
@@ -70,14 +84,14 @@ const Prediction: FC<IData> = ({ data, loading }) => {
             align="flex-start"
             overflow="hidden"
           >
-            {data?.coins.length ? (
-              data?.coins.map((coin, i) => (
+            {coins?.data?.length ? (
+              coins?.data?.map((coin, i) => (
                 <Image
                   key={i}
                   onClick={() => {
                     dispatch(changeCoinId(coin.id));
                   }}
-                  title={coin.id.toString()}
+                  title={coin.id}
                   width="60px"
                   padding="10px"
                   _hover={{ cursor: "pointer" }}

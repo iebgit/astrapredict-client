@@ -27,17 +27,12 @@ export interface IData {
     price_change: any;
     predicted: any;
     coin_id: String;
-    coins: Array<ICoins>;
+    coins: Array<String>;
     prediction_date: String;
     prev_predicted: String;
     prev_date: String;
   };
   loading: boolean;
-}
-
-interface ICoins {
-  id: String;
-  image: String;
 }
 
 function App() {
@@ -58,8 +53,6 @@ function App() {
   const dispatch = useDispatch();
   useEffect(() => {
     if (!!slice?.coinIdReducer?.coinId) {
-      console.log("id");
-
       setLoading(true);
       const getPrediction = async () => {
         const response: any = await axios.get(`${baseURL}/crypto-sidereal`, {
@@ -77,6 +70,7 @@ function App() {
               prev_date: response.data.prev_date,
             })
           : setData(response.data);
+        console.log(data);
         setLoading(false);
         dispatch(
           changeLocation({
