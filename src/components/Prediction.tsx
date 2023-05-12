@@ -109,9 +109,9 @@ const Prediction: FC<IData> = ({ data, loading }) => {
           </Stack>
 
           {loading ? (
-            <Progress size="xs" isIndeterminate colorScheme="blue" />
+            <Progress size="xs" isIndeterminate colorScheme="purple" />
           ) : (
-            <Progress size="xs" colorScheme="blue" />
+            <Progress size="xs" colorScheme="purple" />
           )}
 
           <TableContainer style={{ fontSize: "small", fontWeight: "bold" }}>
