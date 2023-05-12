@@ -42,14 +42,14 @@ const Prediction: FC<IData> = ({ data, loading }) => {
   }, [slice.locationReducer.location.date]);
 
   useEffect(() => {
-    if (coins?.data?.length === 0) {
+    if (coins?.data?.length === 0 && data.planets.length > 0) {
       const getCoinsImages = async () => {
         const coinsArray = await getMarketData(data.coins);
         setCoins(coinsArray);
       };
       getCoinsImages();
     }
-  }, []);
+  }, [data.location.ip]);
 
   return (
     <SimpleGrid minChildWidth="400px" margin="10px" columns={2} spacing={4}>

@@ -51,6 +51,7 @@ function App() {
   const [loading, setLoading] = useState(true);
   const slice = useSelector((state: RootState) => state);
   const dispatch = useDispatch();
+
   useEffect(() => {
     if (!!slice?.coinIdReducer?.coinId) {
       setLoading(true);
@@ -95,7 +96,6 @@ function App() {
       slice?.locationReducer?.location?.date &&
       slice.coinIdReducer.coinId === data.coin_id
     ) {
-      setLoading(true);
       const getPrediction = async () => {
         try {
           const response: any = await axios.get(`${baseURL}/custom-sidereal`, {
@@ -111,10 +111,8 @@ function App() {
             coin_id: slice.coinIdReducer.coinId.toString(),
             planets: response.data.data,
           });
-          setLoading(false);
         } catch (e) {
           console.log(e);
-          setLoading(false);
         }
       };
       getPrediction();
@@ -129,7 +127,7 @@ function App() {
         <Route
           path="/prediction"
           element={
-            !loading && !!data?.planets?.length ? (
+            data?.planets?.length > 0 ? (
               <Prediction data={data} loading={loading} />
             ) : (
               <Loader />

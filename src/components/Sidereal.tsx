@@ -62,6 +62,7 @@ const Sidereal: FC<IData> = ({ data, loading }) => {
               Submit
             </Button>
           </Stack>
+          <br />
           <TableContainer>
             <Table>
               <Thead>
