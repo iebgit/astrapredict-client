@@ -66,7 +66,7 @@ const Prediction: FC<IData> = ({ data, loading }) => {
             </div>
 
             <Button
-              colorScheme="yellow"
+              colorScheme="purple"
               width={"4.25rem"}
               onClick={() => {
                 dispatch(changeCoinId(input.toLowerCase()));
@@ -109,9 +109,9 @@ const Prediction: FC<IData> = ({ data, loading }) => {
           </Stack>
 
           {loading ? (
-            <Progress size="xs" isIndeterminate colorScheme="yellow" />
+            <Progress size="xs" isIndeterminate colorScheme="blue" />
           ) : (
-            <Progress size="xs" colorScheme="yellow" />
+            <Progress size="xs" colorScheme="blue" />
           )}
 
           <TableContainer style={{ fontSize: "small", fontWeight: "bold" }}>

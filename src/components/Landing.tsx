@@ -69,12 +69,8 @@ const Landing: React.FC = () => {
             display={{ base: "inline-flex" }}
             fontSize={"sm"}
             fontWeight={600}
-            color={"black"}
-            colorScheme="yellow"
+            colorScheme="purple"
             onClick={() => navigate("/sidereal")}
-            _hover={{
-              bg: "orange.300",
-            }}
           >
             Current Positions
           </Button>

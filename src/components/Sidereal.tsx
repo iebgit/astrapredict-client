@@ -14,6 +14,7 @@ import {
   TableCaption,
   TableContainer,
   Input,
+  Progress,
   Button,
   Stack,
 } from "@chakra-ui/react";
@@ -48,7 +49,7 @@ const Sidereal: FC<IData> = ({ data, loading }) => {
             </div>
 
             <Button
-              colorScheme="yellow"
+              colorScheme="purple"
               width={"4.25rem"}
               onClick={() => {
                 dispatch(
@@ -63,6 +64,11 @@ const Sidereal: FC<IData> = ({ data, loading }) => {
             </Button>
           </Stack>
           <br />
+          {loading ? (
+            <Progress size="xs" isIndeterminate colorScheme="purple" />
+          ) : (
+            <Progress size="xs" colorScheme="purple" />
+          )}
           <TableContainer>
             <Table>
               <Thead>
