@@ -55,33 +55,36 @@ function App() {
     if (!!slice?.coinIdReducer?.coinId) {
       setLoading(true);
       const getPrediction = async () => {
-        const response: any = await axios.get(`${baseURL}/crypto-sidereal`, {
-          params: { coinId: slice.coinIdReducer.coinId },
-        });
-        data.location.city
-          ? setData({
-              ...data,
-              price_change: response.data.price_change,
-              predicted: response.data.predicted,
-              coin_id: response.data.coin_id,
-              coins: response.data.coins,
-              prediction_date: response.data.prediction_date,
-              prev_predicted: response.data.prev_predicted,
-              prev_date: response.data.prev_date,
+        try {
+          const response: any = await axios.get(`${baseURL}/crypto-sidereal`, {
+            params: { coinId: slice.coinIdReducer.coinId },
+          });
+          data.location.city
+            ? setData({
+                ...data,
+                price_change: response.data.price_change,
+                predicted: response.data.predicted,
+                coin_id: response.data.coin_id,
+                coins: response.data.coins,
+                prediction_date: response.data.prediction_date,
+                prev_predicted: response.data.prev_predicted,
+                prev_date: response.data.prev_date,
+              })
+            : setData(response.data);
+          setLoading(false);
+          dispatch(
+            changeLocation({
+              data: {
+                region: response.data.location.region,
+                city: response.data.location.city,
+                country: response.data.location.country,
+              },
+              date: slice.locationReducer.location.date,
             })
-          : setData(response.data);
-        console.log(data);
-        setLoading(false);
-        dispatch(
-          changeLocation({
-            data: {
-              region: response.data.location.region,
-              city: response.data.location.city,
-              country: response.data.location.country,
-            },
-            date: slice.locationReducer.location.date,
-          })
-        );
+          );
+        } catch (e) {
+          console.log(e);
+        }
       };
       getPrediction();
     }
@@ -92,7 +95,6 @@ function App() {
       slice?.locationReducer?.location?.date &&
       slice.coinIdReducer.coinId === data.coin_id
     ) {
-      console.log("location");
       setLoading(true);
       const getPrediction = async () => {
         try {

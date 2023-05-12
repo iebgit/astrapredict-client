@@ -45,7 +45,6 @@ const Prediction: FC<IData> = ({ data, loading }) => {
     if (coins?.data?.length === 0) {
       const getCoinsImages = async () => {
         const coinsArray = await getMarketData(data.coins);
-        console.log(coinsArray);
         setCoins(coinsArray);
       };
       getCoinsImages();
